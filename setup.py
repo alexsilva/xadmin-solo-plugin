@@ -8,5 +8,6 @@ setup(
     license='MIT',
     author='alex',
     author_email='alex@fabricadigital.com.br',
-    description='Site configuration with xadmin'
+    description='Site configuration with xadmin',
+    install_requires=['django-solo']
 )
