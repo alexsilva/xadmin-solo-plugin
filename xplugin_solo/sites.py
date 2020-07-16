@@ -1,5 +1,5 @@
 from xadmin.sites import site as xadmin_site
-from xadmin.views import UpdateAdminView, ListAdminView
+from xadmin.views import UpdateAdminView, ListAdminView, CreateAdminView
 
 
 def register(site=None):
@@ -9,5 +9,6 @@ def register(site=None):
 
     from xplugin_solo.plugin import SoloPlugin
 
+    site.register_plugin(SoloPlugin, CreateAdminView)
     site.register_plugin(SoloPlugin, UpdateAdminView)
     site.register_plugin(SoloPlugin, ListAdminView)
