@@ -11,15 +11,18 @@ from solo.models import SingletonModel
 class Command(BaseCommand):
     """Export site configuration"""
 
-    def add_arguments(self, parser):
-        parser.add_argument('--app-model', type=str, required=True,
-                            help="app name plus model name like app.model")
+    def add_arguments(self, parser, **defaults):
+        parser.add_argument('--app-model', type=str,
+                            required=defaults.get('app_model') is None,
+                            help="app name plus model name like app.model",
+                            default=defaults.get('app_model'))
         parser.add_argument('--filepath', type=argparse.FileType('w'),
-                            required=False, default=None,
-                            help='export to this filepath')
+                            help='export to this filepath',
+                            default=defaults.get('filepath'),
+                            required=False)
         parser.add_argument('--format', type=str, required=False,
                             help="serialize format", choices=['json', 'xml'],
-                            default='json')
+                            default=defaults.get('format', 'json'))
 
     def handle(self, *args, **options):
         app_model = options['app_model']
