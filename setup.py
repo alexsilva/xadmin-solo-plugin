@@ -9,5 +9,10 @@ setup(
     author='alex',
     author_email='alex@fabricadigital.com.br',
     description='Site configuration with xadmin',
-    install_requires=['django-solo']
+    install_requires=['django-solo'],
+    classifiers=[
+        'Framework :: Django',
+        'Programming Language :: Python',
+        'Programming Language :: Python :: 3.7'
+    ]
 )
