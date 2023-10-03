@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='xadmin-solo-plugin',
-    version='1.0.1',
+    version='1.1.0',
     packages=['xplugin_solo'],
     url='https://github.com/alexsilva/xadmin-solo-plugin',
     license='MIT',
