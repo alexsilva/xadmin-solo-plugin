@@ -10,8 +10,8 @@ from xadmin.views import BaseAdminPlugin
 def get_model_url(self, model, name, *args, **kwargs):
     """Redirects to the change or add screens based on the configuration
     (the changelist will no longer be used as it only has one record)"""
-    if issubclass(model, self.get_model_url.plugin.singleton_model) and name == 'changelist':
-        solo_config = self.get_model_url.plugin.get_solo_config(model)
+    if issubclass(model, self.solo_plugin.singleton_model) and name == 'changelist':
+        solo_config = self.solo_plugin.get_solo_config(model)
         return (self.get_model_url(model, 'change', solo_config.pk, *args, **kwargs)
                 if solo_config else self.get_model_url(model, 'add', *args, **kwargs))
     else:
@@ -22,10 +22,10 @@ class SoloUrlPlugin(BaseAdminPlugin):
     singleton_model = SingletonModel
 
     def setup(self, *args, **kwargs):
-        plugin = getattr(self.admin_view.get_model_url, 'plugin', None)
+        plugin = getattr(self.admin_view, 'solo_plugin', None)
         if plugin is None or not isinstance(plugin, type(self)) and hasattr(self.admin_view, "get_model_url"):
             self.admin_view.get_model_url = partial(get_model_url, self.admin_view)
-            self.admin_view.get_model_url.plugin = self
+            self.admin_view.solo_plugin = self
 
     def get_solo_config(self, model: SingletonModel):
         """Returns the first configuration created"""
