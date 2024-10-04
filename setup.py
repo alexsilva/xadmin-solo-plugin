@@ -1,9 +1,9 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(
     name='xadmin-solo-plugin',
     version='1.1.2',
-    packages=['xplugin_solo'],
+    packages=find_packages(include=['xplugin_solo*'], exclude=['tests*', '__pycache__']),
     url='https://github.com/alexsilva/xadmin-solo-plugin',
     license='MIT',
     author='alex',
