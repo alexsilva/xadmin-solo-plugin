@@ -51,6 +51,7 @@ class SoloPlugin(SoloUrlPlugin):
         context['has_add_permission'] = self._solo_config is None
         context['has_delete_permission'] = context['show_delete'] = False
         context['show_save_and_add_another'] = False
+        context['show_save_and_continue'] = False
         context['show_delete_link'] = False
-        context['show_save'] = False
+        context['show_save'] = True
         return context
